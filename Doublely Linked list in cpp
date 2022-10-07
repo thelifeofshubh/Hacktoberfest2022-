@@ -1,0 +1,239 @@
+### Akash Ranjan Patel
+image : https://imgur.com/a/odZImvZ
+location : India
+github : https://github.com/Sid70
+
+
+
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node {
+    int data;
+    struct node* prev;
+    struct node* next;
+
+} *head = NULL,*last = NULL;
+
+int i = 1;
+
+void traversingInForward();
+void traversingInReverse();
+void creatlist( int n);
+void insetAtBeginning();
+void insetAtEnd();
+void insetAtAnyPosition();
+void deleteFromBeginning();
+void deleteFromEnd();
+void deleteFromAnyPosition();
+
+void SortingAList();
+
+
+int main() {
+
+
+    int n,choice;
+
+    printf("Doubly Linked List Operation\n\n");
+    puts("1.Create List");
+    puts("2.Traversing a Doubly Linked list in forward ");
+    puts("3.Traversing a Doubly Linked list in Reverse ");
+    puts("4.Inserting at the beginning");
+    puts("5.Inserting at the end ");
+    puts("6.Inserting at any position");
+    puts("7.Delete from beginning");
+    puts("8.Delete from End");
+    puts("9.Delete from any Position");
+
+    puts("10.Sorting a list");
+    puts("11.Exit");
+
+    while (1)
+    {
+
+        printf("\nEnter your Choice: ");
+        scanf("%d",&choice);
+
+
+        switch(choice)
+        {
+        case 1:
+            {
+                printf("\nEnter how many list you want to create\n");
+                scanf("%d",&n);
+
+                creatlist(n);
+
+                printf("\n");
+
+                break;
+            }
+        case 2:
+            {
+                printf("traverse a doubly Linked List in forward Direction\n");
+                printf("Data in the list\n");
+                traversingInForward();
+
+                printf("\n");
+
+                break;
+            }
+        case 3:
+            {
+                printf("traverse a doubly Linked List in Reverse Direction\n");
+                printf("Data in the list\n");
+                traversingInReverse();
+
+                printf("\n");
+
+                break;
+            }
+        case 4:
+            {
+                insetAtBeginning();
+                break;
+            }
+        case 5:
+            {
+               // insetAtEnd();
+                break;
+            }
+        case 6:
+            {
+               // insetAtAnyPosition();
+                break;
+            }
+        case 7:
+            {
+               // deleteFromBeginning();
+                break;
+            }
+        case 8:
+            {
+               // deleteFromEnd();
+                //break;
+            }
+        case 9:
+            {
+                //deleteFromAnyPosition();
+                break;
+            }
+        case 10:
+            {
+                //SortingAList();
+                break;
+            }
+        case 11:
+            {
+                exit(0);
+            }
+        }
+
+        fflush(stdin);
+    }
+
+    return 0;
+}
+
+void creatlist( int n) {
+
+    int data;
+    struct node* newNode;
+
+
+    head = (struct node *) malloc(sizeof( struct node ));
+
+    printf("Enter the data at node 1\n");
+    scanf("%d",&data);
+
+    head->data = data;
+    head->next = NULL;
+    head->prev = NULL;
+
+    last = head;
+
+    for ( int i = 2 ; i <= n ; i++ )
+    {
+        newNode = ( struct node *) malloc(sizeof( struct node ));
+
+        printf("Enter the data at node %d\n",i);
+        scanf("%d",&data);
+
+        newNode->data = data;
+        newNode->next = NULL;
+        newNode->prev = last;
+
+        last->next = newNode;
+        last = newNode;
+    }
+}
+
+void traversingInForward() {
+
+    struct node *temp;
+
+    temp = head;
+
+    while ( temp != NULL )
+    {
+        printf("   %d   ",temp->data);
+
+        temp = temp->next;
+    }
+}
+
+void traversingInReverse() {
+
+    struct node* temp;
+
+    temp = last;
+
+    while ( temp != NULL )
+    {
+        printf("   %d   ",temp->data);
+
+        temp = temp->prev;
+    }
+}
+
+void insetAtBeginning() {
+
+    struct node *newNode;
+    int data;
+
+    newNode = ( struct node *) malloc( sizeof( struct node ));
+
+    puts("Enter data which you want to insert at the beginning");
+    scanf("%d",&data);
+
+    newNode->data = data;
+    newNode->next = head;
+    newNode->prev = NULL;
+
+
+    head = newNode;
+    head->prev = newNode;
+
+
+
+}
+
+void insetAtEnd() {
+
+    struct node *newNode;
+    int data;
+
+    newNode = ( struct node*) malloc( sizeof( struct node ));
+
+    puts("Enter data which you want to insert at the end");
+    scanf("%d",&data);
+
+
+    newNode->data = data;
+    newNode->next = NULL;
+    newNode->prev = last;
+
+}
+
+
